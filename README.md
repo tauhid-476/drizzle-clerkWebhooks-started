@@ -81,17 +81,21 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application.
 
 ```
 ├── app/
-│   ├── api/           # API routes
 │   ├── (auth)/        # Auth protected routes
+│   ├── api/           # API routes
+│   ├── fonts/         # Custom fonts
+│   ├── favicon.ico    
+│   ├── globals.css    # Global styles
+│   ├── layout.tsx     # Root layout
 │   └── page.tsx       # Home page
-├── components/        # React components
+├── components/        # Reusable React components
+├── db/
+│   ├── index.ts      # Database connection and configuration
+│   └── schema.ts     # Drizzle schema definitions
+├── drizzle/          # Drizzle ORM configurations
 ├── lib/
-│   ├── db/           # Database configuration
-│   └── utils/        # Utility functions
-├── drizzle/
-│   ├── migrations/   # Database migrations
-│   └── schema.ts     # Database schema
-└── public/           # Static assets
+│   └── utils.ts      # Utility functions
+├── public/           # Static assets
 ```
 
 ## 🔄 Database Synchronization
