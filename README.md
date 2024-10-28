@@ -1,9 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Full Stack Boilerplate
 
-## Getting Started
+A production-ready starter template for building full-stack applications with Next.js, Drizzle ORM, Neon PostgreSQL, and Clerk Authentication.
 
-First, run the development server:
+## 🚀 Features
 
+- ⚡️ **Next.js 14** with App Router
+- 🔐 **Clerk Authentication** with database sync
+- 🗃️ **Drizzle ORM** for type-safe database operations
+- 🐘 **Neon PostgreSQL** - Serverless Postgres database
+- 🔄 **Database Webhooks** for user synchronization
+- 🎨 **Geist Font** by Vercel
+- 📱 **Responsive** design
+- 🔒 **Type Safety** with TypeScript
+- 🛠️ **Developer Experience** optimized
+
+## 📦 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js 18+ 
+- npm/yarn/pnpm/bun
+- A [Clerk](https://clerk.dev) account
+- A [Neon](https://neon.tech) account
+
+## 🛠️ Quick Start
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name
+```
+
+2. **Install dependencies**
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. **Set up environment variables**
+```bash
+cp .env.example .env.local
+```
+Fill in your environment variables:
+```env
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
+CLERK_WEBHOOK_SECRET=your_webhook_secret
+
+# Database
+DATABASE_URL=your_neon_database_url
+```
+
+4. **Initialize the database**
+```bash
+npm run db:push
+# or
+yarn db:push
+or run the command from official docs
+```
+
+5. **Start the development server**
 ```bash
 npm run dev
 # or
@@ -14,23 +75,68 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to see your application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/
+│   ├── api/           # API routes
+│   ├── (auth)/        # Auth protected routes
+│   └── page.tsx       # Home page
+├── components/        # React components
+├── lib/
+│   ├── db/           # Database configuration
+│   └── utils/        # Utility functions
+├── drizzle/
+│   ├── migrations/   # Database migrations
+│   └── schema.ts     # Database schema
+└── public/           # Static assets
+```
 
-## Learn More
+## 🔄 Database Synchronization
 
-To learn more about Next.js, take a look at the following resources:
+This template automatically synchronizes user data between Clerk and your Neon PostgreSQL database using webhooks. When a user signs up or updates their profile in Clerk, the changes are automatically reflected in your database.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Webhook Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Go to your Clerk Dashboard
+2. Navigate to Webhooks
+3. Add a new webhook endpoint: `your-domain/api/webhooks/clerk`
+4. Copy the signing secret to your environment variables
 
-## Deploy on Vercel
+## 🛣️ API Routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GET /api/users` - List all users
+- `GET /api/users/:id` - Get user details
+- `POST /api/webhooks/clerk` - Clerk webhook endpoint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Deployment
+
+The easiest way to deploy your application is using the [Vercel Platform](https://vercel.com/new).
+
+1. Push your code to a Git repository
+2. Import your project to Vercel
+3. Add your environment variables
+4. Deploy!
+
+## 📚 Useful Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Clerk Documentation](https://clerk.dev/docs)
+- [Drizzle ORM Documentation](https://orm.drizzle.team/docs/overview)
+- [Neon Documentation](https://neon.tech/docs)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
